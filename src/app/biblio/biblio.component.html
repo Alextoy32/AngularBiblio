@@ -1,0 +1,35 @@
+<mat-card>
+    <form #idForm="ngForm">
+        <mat-form-field>
+            <input type="number" id="numero" ngModel name="numero" #nom="ngModel" matInput placeholder="Numéro du livre" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input type="text" id="titre" ngModel name="titre" #qte="ngModel" matInput placeholder="Titre du livre" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field *ngFor="let foo of foos; let id = index">
+            <input id="page" ngModel name="page" #nom="ngModel" matInput placeholder="page {{id}}">
+        </mat-form-field><br>
+        <button mat-button (click)="addPage()">
+            <mat-icon>add_circle_outline</mat-icon>
+        </button>
+        <br>
+        <input type="submit" [disabled]="!idForm.valid" value="Ajouter"
+            (click)="ajouter(idForm.value.numero, idForm.value.titre, idForm.value.page); idForm.reset()">
+    </form>
+</mat-card>
+<br>
+<mat-list>
+    <mat-list-item class="listCard" *ngFor="let livre of biblio">
+        <mat-card  (click)="showLivre(livre.numero)" class="livreCard">
+            <h4>livre {{livre.numero}} : {{livre.titre}}</h4>
+            <ul *ngFor="let page of livre.pages">
+                <li>{{page}}</li>
+            </ul>
+        </mat-card>
+        <button (click)="supprimer(livre)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-list-item>
+</mat-list>

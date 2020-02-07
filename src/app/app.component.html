@@ -1,0 +1,12 @@
+<mat-card>
+    <form #idFormToken="ngForm">
+        <mat-form-field>
+            <mat-label>Entrez un pseudo pour actualiser son token : </mat-label>
+            <input id="pseudo" ngModel name="pseudo" #nom="ngModel" matInput placeholder="Numéro du livre" required>
+        </mat-form-field>
+        <button mat-button [disabled]="!idFormToken.valid" value="getToken" (click)="getNewToken(idFormToken.value.pseudo); idFormToken.reset()">getToken</button>
+        <mat-label *ngIf="isGood != true">Token récupéré</mat-label>
+    </form>
+</mat-card>
+<h1>Bibliothèque</h1>
+<router-outlet></router-outlet>

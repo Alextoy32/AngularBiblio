@@ -1,0 +1,17 @@
+<button routerLinkActive="active" routerLink="" mat-button>back</button>
+<button (click)="swapEditable()" mat-button>Edit</button>
+<div *ngIf="editable == false">
+    <h3>livre numéro : {{livre.numero}}</h3>
+    <h1>{{livre.titre}}</h1>
+    <p *ngFor="let page of livre.pages">
+        {{page}}
+    </p>
+</div>
+
+<div *ngIf="editable == true">
+    <form #idForm="ngForm" (ngSubmit)="send(idForm.value.numero, idForm.value.titre); idForm.reset()">
+        <label>titre : </label>
+        <input name="titre" value="{{livre.titre}}"><br/>
+        <input mat-button type="submit" value="Send"><br/>
+    </form>
+</div>
